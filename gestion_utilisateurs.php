@@ -8,6 +8,25 @@ include 'header.php';
   include 'navbar.php';
   ?>
 
+
+  <?php if (isset($_GET['deleted'])) : ?>
+    <div class="alert alert-success" role="alert">
+      User successfully deleted
+    </div>
+  <?php endif; ?>
+
+  <?php if (isset($_GET['edited'])) : ?>
+    <div class="alert alert-success" role="alert">
+      User successfully edited
+    </div>
+  <?php endif; ?>
+
+  <?php if (isset($_GET['created'])) : ?>
+    <div class="alert alert-success " role="alert">
+      User successfully added
+    </div>
+  <?php endif; ?>
+
   <table class="table">
     <thead>
       <tr>
@@ -57,7 +76,11 @@ include 'header.php';
   </table>
   <!-- Ending of PHP Request -->
 
-  <button type="submit" class="btn btn-success">Add new</button>
+  <div class="container-fluid">
+    <div class="row">
+      <a type="submit" role="button" href="queries/createUser.php" class="btn btn-success ml-4">Add new</a>
+    </div>
+  </div>
 
   <?php
   include 'footer.php';

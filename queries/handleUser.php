@@ -8,6 +8,12 @@ include '../header.php';
     include '../navbar.php';
     ?>
 
+    <div class="position-relative overflow-hidden text-center bg-light">
+        <div class="col-md-5 p-lg-5 mx-auto my-5">
+            <h1 class="display-4 font-weight-normal">Edit user</h1>
+        </div>
+    </div>
+
     <?php
     include('../db_connect.php');
     $id = $_GET['row_id'];
@@ -15,39 +21,44 @@ include '../header.php';
 
     while ($donnees = $reponse->fetch()) {
         ?>
+        <div class="container">
+            <form action="postUser.php" method="POST">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="inputName">Name</label>
+                        <input name="usr_name" value=<?php echo $donnees['usr_nom']; ?> type="text" class="form-control" id="inputName" placeholder="Name">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputFirstName">First name</label>
+                        <input name="usr_firstname" value=<?php echo $donnees['usr_prenom']; ?> type="text" class="form-control" id="inputFirstNAme" placeholder="FirstName">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputEmail4">Email</label>
+                        <input name="usr_email" value=<?php echo $donnees['usr_email']; ?> type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                    </div>
+                </div>
+                <div class="form-row">
 
-        <form action="postUser.php" method="POST">
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="inputName">Name</label>
-                    <input name="usr_name" value=<?php echo $donnees['usr_nom']; ?> type="text" class="form-control" id="inputName" placeholder="Name">
+                    <div class="form-group col-md-4">
+                        <label for="inputCity">City</label>
+                        <input name="usr_city" value=<?php echo $donnees['usr_ville']; ?> type="text" class="form-control" id="inputCity" placeholder="City">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputPhone">Phone number</label>
+                        <input name="usr_phone" value=<?php echo $donnees['usr_tel']; ?> type="tel" class="form-control" id="inputPhone" pattern="[0-9]{10}">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputID">login</label>
+                        <input name="usr_id" value=<?php echo $donnees['usr_login']; ?> type="tel" class="form-control" id="inputPhone" disabled>
+                    </div>
+                    <div class="form-group col-md-4 d-none">
+                        <label for="inputID">Hidden ID</label>
+                        <input name="usr_id" value=<?php echo $donnees['usr_id']; ?> type="tel" class="form-control" id="inputPhone">
+                    </div>
                 </div>
-                <div class="form-group col-md-4">
-                    <label for="inputFirstName">First name</label>
-                    <input name="usr_firstname" value=<?php echo $donnees['usr_prenom']; ?> type="text" class="form-control" id="inputFirstNAme" placeholder="FirstName">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="inputEmail4">Email</label>
-                    <input name="usr_email" value=<?php echo $donnees['usr_email']; ?> type="email" class="form-control" id="inputEmail4" placeholder="Email">
-                </div>
-            </div>
-            <div class="form-row">
-
-                <div class="form-group col-md-4">
-                    <label for="inputCity">City</label>
-                    <input name="usr_city" value=<?php echo $donnees['usr_ville']; ?> type="text" class="form-control" id="inputCity" placeholder="City">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="inputPhone">Phone number</label>
-                    <input name="usr_phone" value=<?php echo $donnees['usr_tel']; ?> type="tel" class="form-control" id="inputPhone" pattern="[0-9]{10}">
-                </div>
-                <div class="form-group col-md-4 d-none">
-                    <label for="inputID">Hidden ID</label>
-                    <input name="usr_id" value=<?php echo $donnees['usr_id']; ?> type="tel" class="form-control" id="inputPhone">
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Edit</button>
-        </form>
+                <button type="submit" class="btn btn-primary">Edit</button>
+            </form>
+        </div>
     <?php
     }
     $reponse->closeCursor(); // Termine le traitement de la requête

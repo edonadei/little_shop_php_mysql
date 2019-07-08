@@ -17,6 +17,9 @@ $cmd = ("UPDATE utilisateur
     usr_tel = '$phone' 
     WHERE usr_id = '$id'");
 
+$created = true;
+
 $dbs->exec($cmd);
-header("Location: /webvp/gestion_utilisateurs.php");
+$edited = true;
+header("Location: /webvp/gestion_utilisateurs.php?edited=" .$edited);
 exit;
